@@ -12,6 +12,7 @@ func TestGet(t *testing.T) {
 	}{
 		{"https://google.com", "Get info from url https://google.com"},
 		{"", "Get info from url "},
+		{"sadf", "Get info from url sadf"},
 	}
 	logger := &logger.Logger{}
 	httpClient := NewHttpClient(logger)
