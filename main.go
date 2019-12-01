@@ -30,7 +30,7 @@ type ServiceGroup struct {
 	httpClient *HttpClient
 }
 
-func CreateServiceGroup(logger *Logger, httpClient *HttpClient) *ServiceGroup {
+func NewServiceGroup(logger *Logger, httpClient *HttpClient) *ServiceGroup {
 	return &ServiceGroup{logger, httpClient}
 }
 
@@ -45,9 +45,7 @@ func (service *ServiceGroup) GetAll(urls ...string) string {
 }
 
 func main() {
-	logger := &Logger{}
-	httpClient := &HttpClient{logger}
-	serviceGroup := CreateServiceGroup(logger, httpClient)
+	serviceGroup := CreateServiceGroup()
 	result := serviceGroup.GetAll("https://google.com", "https://youtube.com")
-	logger.Log(result)
+	fmt.Println("result", result)
 }
