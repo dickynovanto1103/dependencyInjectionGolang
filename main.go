@@ -21,8 +21,7 @@ func (client *HttpClient) Get(url string) string {
 	return "Get info from url " + url
 }
 
-func NewHttpClient() *HttpClient {
-	logger := &Logger{}
+func NewHttpClient(logger *Logger) *HttpClient {
 	return &HttpClient{logger}
 }
 
@@ -31,10 +30,7 @@ type ServiceGroup struct {
 	httpClient *HttpClient
 }
 
-func CreateServiceGroup() *ServiceGroup {
-	logger := &Logger{}
-	httpClient := &HttpClient{logger}
-
+func CreateServiceGroup(logger *Logger, httpClient *HttpClient) *ServiceGroup {
 	return &ServiceGroup{logger, httpClient}
 }
 
@@ -49,10 +45,9 @@ func (service *ServiceGroup) GetAll(urls ...string) string {
 }
 
 func main() {
-	a := &Logger{}
-	a.Log("halo")
-
-	serviceGroup := CreateServiceGroup()
+	logger := &Logger{}
+	httpClient := &HttpClient{logger}
+	serviceGroup := CreateServiceGroup(logger, httpClient)
 	result := serviceGroup.GetAll("https://google.com", "https://youtube.com")
-	a.Log(result)
+	logger.Log(result)
 }
