@@ -3,19 +3,18 @@
 //go:generate wire
 //+build !wireinject
 
-package main
+package serviceGroup
 
 import (
 	"github.com/dickynovanto1103/dependencyInjectionGolang/httpClient"
 	"github.com/dickynovanto1103/dependencyInjectionGolang/logger"
-	"github.com/dickynovanto1103/dependencyInjectionGolang/serviceGroup"
 )
 
 // Injectors from container.go:
 
-func CreateServiceGroup() *serviceGroup.ServiceGroup {
-	logger := &logger.Logger{}
-	httpClient := httpClient.NewHttpClient(logger)
-	serviceGroup := serviceGroup.NewServiceGroup(logger, httpClient)
+func CreateServiceGroup() *ServiceGroup {
+	loggerLogger := &logger.Logger{}
+	httpClientHttpClient := httpClient.NewHttpClient(loggerLogger)
+	serviceGroup := NewServiceGroup(loggerLogger, httpClientHttpClient)
 	return serviceGroup
 }
