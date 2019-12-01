@@ -5,11 +5,17 @@
 
 package main
 
+import (
+	"github.com/dickynovanto1103/dependencyInjectionGolang/httpClient"
+	"github.com/dickynovanto1103/dependencyInjectionGolang/logger"
+	"github.com/dickynovanto1103/dependencyInjectionGolang/serviceGroup"
+)
+
 // Injectors from container.go:
 
-func CreateServiceGroup() *ServiceGroup {
-	logger := &Logger{}
-	httpClient := NewHttpClient(logger)
-	serviceGroup := NewServiceGroup(logger, httpClient)
+func CreateServiceGroup() *serviceGroup.ServiceGroup {
+	logger := &logger.Logger{}
+	httpClient := httpClient.NewHttpClient(logger)
+	serviceGroup := serviceGroup.NewServiceGroup(logger, httpClient)
 	return serviceGroup
 }
